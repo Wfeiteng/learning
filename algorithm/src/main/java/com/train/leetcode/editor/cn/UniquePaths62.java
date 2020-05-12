@@ -41,12 +41,28 @@ package com.train.leetcode.editor.cn;
 public class UniquePaths62 {
     public static void main(String[] args) {
         Solution solution = new UniquePaths62().new Solution();
+        int count = solution.uniquePaths(7, 3);
+        System.out.println(count);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int uniquePaths(int m, int n) {
-        // todo
+            int[][] dp = new int[m][n];
+            int i = 0;
+            for (; i < m; i++) {
+                dp[i][0] = 1;
+            }
+            int j = 0;
+            for (; j < n; j++) {
+                dp[0][j] = 1;
+            }
+            for ( i = 1; i < m; i++) {
+                for ( j = 1; j < n; j++) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+            return dp[i - 1][j - 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
