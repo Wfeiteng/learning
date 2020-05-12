@@ -72,9 +72,9 @@ hs_err_pid*
 # .idea/compiler.xml
 # .idea/jarRepositories.xml
 # .idea/modules.xml
-# .idea/*.iml
+ .idea/*.iml
 # .idea/modules
-# *.iml
+ *.iml
 # *.ipr
 
 # CMake
@@ -88,6 +88,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
+track/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -109,4 +110,7 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+*/target/
+.idea/
+*/*.iml
 
