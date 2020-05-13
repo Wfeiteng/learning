@@ -34,7 +34,8 @@ public class FindMinimumInRotatedSortedArrayIi154 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findMin(int[] nums) {
-
+// TODO: 2020/5/13
+            return 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

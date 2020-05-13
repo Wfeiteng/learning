@@ -22,12 +22,29 @@ package com.train.leetcode.editor.cn;
 public class FindMinimumInRotatedSortedArray153 {
     public static void main(String[] args) {
         Solution solution = new FindMinimumInRotatedSortedArray153().new Solution();
+        int[] arrays = {4, 5, 6, 7, 0, 1, 2};
+        int value = solution.findMin(arrays);
+        System.out.println(value);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findMin(int[] nums) {
-
+            if (nums == null) {
+                return 0;
+            }
+            int left = 0;
+            int right = nums.length-1;
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                int midValue = nums[mid];
+                if (nums[right] < midValue) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+            return nums[left];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

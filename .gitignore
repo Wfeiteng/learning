@@ -113,4 +113,4 @@ fabric.properties
 */target/
 .idea/
 */*.iml
-
+*/*.class
