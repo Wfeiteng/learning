@@ -20,17 +20,50 @@
 //输出: -1 
 // Related Topics 数组 二分查找
 
-  package com.train.leetcode.editor.cn;
-  public class SearchInRotatedSortedArray33{
-      public static void main(String[] args) {
-           Solution solution = new SearchInRotatedSortedArray33().new Solution();
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int search(int[] nums, int target) {
+package com.train.leetcode.editor.cn;
 
+import java.awt.font.NumericShaper;
+
+public class SearchInRotatedSortedArray33 {
+    public static void main(String[] args) {
+        Solution solution = new SearchInRotatedSortedArray33().new Solution();
+        int[] nums = {3, 1};
+        int target = 1;
+        int targetIndex = solution.search(nums, target);
+        System.out.println(targetIndex);
     }
-}
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int search(int[] nums, int target) {
+            if (nums == null || nums.length == 0) {
+                return -1;
+            }
+            int left = 0, right = nums.length - 1;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                int midValue = nums[mid];
+                if (midValue == target) {
+                    return mid;
+                } else if (nums[left] <= midValue) {
+                    // left->mid有序
+                    if ( nums[left]<=target && target < midValue) {
+                        right = mid - 1;
+                    } else {
+                        left = mid + 1;
+                    }
+                } else {
+                    // mid -> right有序
+                    if (midValue < target && target <= nums[right]) {
+                        left = mid + 1;
+                    } else {
+                        right = mid - 1;
+                    }
+                }
+            }
+            return -1;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
-  }
+}
