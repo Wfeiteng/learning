@@ -18,10 +18,6 @@
 package com.train.leetcode.editor.cn;
 
 
-import com.sun.xml.internal.bind.v2.TODO;
-import sun.security.util.Length;
-
-import java.util.Arrays;
 
 public class FindFirstAndLastPositionOfElementInSortedArray34 {
     public static void main(String[] args) {
