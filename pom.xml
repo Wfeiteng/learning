@@ -12,10 +12,12 @@
     <module>algorithm</module>
       <module>concurrency</module>
       <module>book-easycoding</module>
+      <module>netty-greek</module>
+    <module>netty-action</module>
+      <module>other</module>
   </modules>
 
   <name>learn</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>

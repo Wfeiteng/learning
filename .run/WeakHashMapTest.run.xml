@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WeakHashMapTest" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.train.learning.other.WeakHashMapTest" />
+    <module name="other" />
+    <option name="VM_PARAMETERS" value="-Xmx1m -Xms1m" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.train.learning.other.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <RunnerSettings RunnerId="Debug with VisualVM">
+      <option name="visualVMId" value="285868402718300" />
+    </RunnerSettings>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
