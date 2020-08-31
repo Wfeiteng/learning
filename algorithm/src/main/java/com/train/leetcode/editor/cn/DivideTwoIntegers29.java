@@ -34,13 +34,36 @@ package com.train.leetcode.editor.cn;
 public class DivideTwoIntegers29 {
     public static void main(String[] args) {
         Solution solution = new DivideTwoIntegers29().new Solution();
+        System.out.println(solution.divide(-2147483648, 1));
+
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int divide(int dividend, int divisor) {
-// // TODO: 2020/5/13
-            return 0;
+            if (divisor == 0) {
+                return 0;
+            }
+            if (dividend == Integer.MIN_VALUE && divisor == -1) { // min/-1->max
+                return Integer.MAX_VALUE;
+
+            }
+            int result = 0;
+            // x/y
+            long x = Math.abs(dividend * 1l);
+            long y = Math.abs(divisor * 1l);
+            System.out.println(x + " " + y);
+            for (int i = 31; i >= 0; i--) {
+                if ((x >> i) >= y) {
+                    result += 1 << i;
+                    // << 位运算的优先级低，比+ - 还低，请注意
+                    x = x - (y << i);
+                    //  System.out.println("x:" + x + " i: " + i + " y:" + y + "y << i:" + (y << i));
+                }
+            }
+
+            result = (dividend ^ divisor) >= 0 ? result : -1 * result;
+            return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

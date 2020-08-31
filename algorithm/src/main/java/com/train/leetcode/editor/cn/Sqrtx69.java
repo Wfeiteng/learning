@@ -24,15 +24,37 @@ package com.train.leetcode.editor.cn;
 public class Sqrtx69 {
     public static void main(String[] args) {
         Solution solution = new Sqrtx69().new Solution();
+        System.out.println(solution.mySqrt(15));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int mySqrt(int x) {
-            return 0;
+            return _mySqrt(x);
         }
 
-        // 二分查找
+        /**
+         * 二分查找 x^2<=k
+         *
+         * @param x
+         * @return
+         */
+        private int _mySqrt(int x) {
+            int left = 0, right = x / 2 + 1;
+            int ans = 0;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                long qurt = (long) mid * mid;
+                if (qurt <= x) {
+                    ans = mid;
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+
+            }
+            return ans;
+        }
         // 牛顿迭代法
 
     }

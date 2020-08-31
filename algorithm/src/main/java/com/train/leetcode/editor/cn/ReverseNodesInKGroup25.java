@@ -61,6 +61,31 @@ public class ReverseNodesInKGroup25 {
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
+            if (k < 2) {
+                return head;
+            }
+         //   return raw(head, k);
+            return _reverseKFun1(head, k);
+        }
+
+        ListNode _reverseKFun1(ListNode head, int k) {
+            if (head == null) {
+                return head;
+            }
+            ListNode start = head, end = head;
+            for (int i = 0; i < k; i++) {
+                if (Objects.isNull(end)) {
+                    return start;
+                }
+                end = end.next;
+            }
+            ListNode newHead = reverse(start, end);
+            start.next = _reverseKFun1(end, k);
+            return newHead;
+        }
+
+
+        public ListNode raw(ListNode head, int k) {
             if (k < 1) {
                 return head;
             }
@@ -82,7 +107,7 @@ public class ReverseNodesInKGroup25 {
                 // [start,end)
                 end = end.next;
 
-                ListNode groupPre = reverse(start, end);
+                ListNode groupPre = rawReverse(start, end);
                 start = end;
                 // 拼接
                 if (!init) {
@@ -103,17 +128,41 @@ public class ReverseNodesInKGroup25 {
             return head;
         }
 
-        public ListNode reverse(ListNode start, ListNode end) {
+
+        public ListNode rawReverse(ListNode start, ListNode end) {
             ListNode pre = null;
+            ListNode data = start;
             while (Objects.nonNull(start) && start != end) {
-                ListNode data = start;
                 start = start.next;
                 data.next = pre;
                 pre = data;
             }
             return pre;
         }
+
+        /**
+         * 区间[)
+         *
+         * @param start
+         * @param end
+         * @return
+         */
+        public ListNode reverse(ListNode start, ListNode end) {
+            ListNode pre = null, cur = start;
+            while (Objects.nonNull(cur) && cur != end) {
+                ListNode nextNode = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = nextNode;
+            }
+            return pre;
+        }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
+// 递归方法
+// 迭代方法
+// [] [)

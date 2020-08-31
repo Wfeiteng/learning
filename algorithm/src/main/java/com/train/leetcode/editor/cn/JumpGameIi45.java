@@ -26,9 +26,41 @@ public class JumpGameIi45 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int jump(int[] nums) {
             // todo
+            //  return _dp(nums);
+            return _greedy(nums);
+        }
+
+        private int _dp(int[] nums) {
+
             return 0;
+        }
+
+        /**
+         * 贪心算法
+         *
+         * @param nums
+         * @return
+         */
+        private int _greedy(int[] nums) {
+            int longest = 0;
+            // []
+            int start = 0;
+            int end = 0;
+            int minJumpCnt = 0;
+            // end为],end为最后一个时中止
+            while (end < nums.length - 1) {
+                //[]
+                for (int i = start; i <= end; i++) {
+                    longest = Math.max(longest, i + nums[i]);
+                }
+                start = end + 1;
+                end = longest;
+                minJumpCnt++;
+            }
+            return minJumpCnt;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

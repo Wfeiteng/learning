@@ -19,8 +19,8 @@ import java.util.Arrays;
 public class ReverseLinkedListIi92 {
     public static void main(String[] args) {
         Solution solution = new ReverseLinkedListIi92().new Solution();
-        ListNode head = ListNodeUtil.buildListNode(Arrays.asList(1,2,3,4,5));
-        head=  solution.reverseBetween(head,2,4);
+        ListNode head = ListNodeUtil.buildListNode(Arrays.asList(1, 2, 3, 4, 5));
+        head = solution.reverseBetween(head, 2, 4);
         ListNodeUtil.printListNode(head);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -39,14 +39,15 @@ public class ReverseLinkedListIi92 {
             root.next = head;
             ListNode pre = root;
             ListNode mNode = root;
-            int step=0;
-            while (step<m) {
+            int step = 0;
+            while (step < m) {
                 pre = mNode;
                 mNode = mNode.next;
                 step++;
             }
 
             while (step < n) {
+                // 头插法
                 ListNode removed = mNode.next;
                 mNode.next = mNode.next.next;
                 removed.next = pre.next;

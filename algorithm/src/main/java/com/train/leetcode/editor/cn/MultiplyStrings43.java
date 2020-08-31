@@ -25,13 +25,40 @@ package com.train.leetcode.editor.cn;
 public class MultiplyStrings43 {
     public static void main(String[] args) {
         Solution solution = new MultiplyStrings43().new Solution();
+        System.out.println(solution.multiply("99", "99"));
+        System.out.println("real:" + 99 * 99);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String multiply(String num1, String num2) {
-            // todo 优先做 + 2数除
-            return "";
+            if ("0".equals(num1) || "0".equals(num2)) {
+                return "0";
+            }
+            int[] result = new int[num1.length() + num2.length()];
+            for (int i = num1.length() - 1; i >= 0; i--) {
+                for (int j = num2.length() - 1; j >= 0; j--) {
+                    int hightPos = i + j;
+                    int levelPos = i + j + 1;
+                    int mult = (num1.charAt(i) - '0') * (num2.charAt(j) - '0') + result[levelPos];
+                    result[levelPos] = mult % 10;
+                    // 高位进位
+                    result[hightPos] += mult / 10;
+                }
+            }
+
+            int start = 0;
+            for (int i = 0; i < result.length; i++) {
+                if (result[i] != 0) {
+                    start = i;
+                    break;
+                }
+            }
+            StringBuilder value = new StringBuilder();
+            for (int i = start; i < result.length; i++) {
+                value.append(result[i]);
+            }
+            return value.toString();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

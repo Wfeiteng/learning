@@ -22,8 +22,6 @@
 
 package com.train.leetcode.editor.cn;
 
-import java.awt.font.NumericShaper;
-
 public class SearchInRotatedSortedArray33 {
     public static void main(String[] args) {
         Solution solution = new SearchInRotatedSortedArray33().new Solution();
@@ -43,6 +41,7 @@ public class SearchInRotatedSortedArray33 {
             while (left <= right) {
                 int mid = left + (right - left) / 2;
                 int midValue = nums[mid];
+                // 既可以mid与left进行比较，也可以与right比较，都可以，只是确定哪段是单调有序的
                 if (midValue == target) {
                     return mid;
                 } else if (nums[left] <= midValue) {

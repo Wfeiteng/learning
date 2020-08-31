@@ -34,11 +34,14 @@ public class FindMinimumInRotatedSortedArray153 {
                 return 0;
             }
             int left = 0;
-            int right = nums.length-1;
+            int right = nums.length - 1;
+            // 因为left最多为nums[right],不存在left超出边界的情况。
+            // 当left<=right时的终止条件为left=right+1,此时超出边界
             while (left < right) {
                 int mid = left + (right - left) / 2;
                 int midValue = nums[mid];
                 if (nums[right] < midValue) {
+                    // 向右端逼近
                     left = mid + 1;
                 } else {
                     right = mid;

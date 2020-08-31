@@ -28,18 +28,69 @@
 
 package com.train.leetcode.editor.cn;
 
-import java.util.List;
+import javafx.geometry.Pos;
+
+import java.util.*;
 
 public class NQueens51 {
     public static void main(String[] args) {
         Solution solution = new NQueens51().new Solution();
+        System.out.println(solution.solveNQueens(4));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<List<String>> solveNQueens(int n) {
             // todo
-            return null;
+            List<List<String>> result = new ArrayList<>();
+            _solveNQueens(n, 0, new HashSet<>(), new HashSet<>(), new ArrayDeque<>(), result);
+            return result;
+        }
+
+        /**
+         * @param n
+         * @param row    行
+         * @param pie
+         * @param na
+         * @param path
+         * @param result
+         */
+        private void _solveNQueens(int n, int row, Set<Integer> pie, Set<Integer> na, Deque<Integer> path, List<List<String>> result) {
+            if (path.size() == n) {
+                result.add(makeResult(path));
+                return;
+            }
+
+            for (int col = 0; col < n; col++) {
+                // 不同列，不斜线重合
+                if (path.contains(col) || pie.contains(row + col) || na.contains(row - col)) {
+                    continue;
+                }
+                path.addLast(col);
+                pie.add(row + col);
+                na.add(row - col);
+                _solveNQueens(n, row + 1, pie, na, path, result);
+                path.removeLast();
+                pie.remove(col + row);
+                na.remove(row - col);
+            }
+
+        }
+
+        private List<String> makeResult(Deque<Integer> path) {
+            List<String> ans = new ArrayList<>();
+            for (Integer pos : path) {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < pos; i++) {
+                    builder.append(".");
+                }
+                builder.append("Q");
+                for (int i = pos + 1; i < path.size(); i++) {
+                    builder.append(".");
+                }
+                ans.add(builder.toString());
+            }
+            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

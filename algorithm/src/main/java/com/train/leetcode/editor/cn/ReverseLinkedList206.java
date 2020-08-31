@@ -31,7 +31,23 @@ public class ReverseLinkedList206 {
      */
     class Solution {
         public ListNode reverseList(ListNode head) {
-            ListNode newHead=null, cur = null;
+            if (head == null) {
+                return head;
+            }
+            // return raw(head);
+            //  return _reverseFun1(head);
+            //  return _reverseFun2(head);
+            return _reverseFun2(head);
+        }
+
+        /**
+         * 头插法
+         *
+         * @param head
+         * @return
+         */
+        public ListNode raw(ListNode head) {
+            ListNode newHead = null, cur = null;
             while (Objects.nonNull(head)) {
                 cur = head;
                 head = head.next;
@@ -39,6 +55,68 @@ public class ReverseLinkedList206 {
                 newHead = cur;
             }
             return newHead;
+        }
+
+
+        /**
+         * 递归法
+         *
+         * @param head
+         * @return
+         */
+        private ListNode _reverseFun1(ListNode head) {
+            if (head.next == null) {
+                return head;
+            }
+            ListNode last = _reverseFun1(head.next);
+            head.next.next = head;
+            head.next = null;
+            return last;
+        }
+
+
+        /**
+         * 迭代法,指向反转
+         *
+         * @param head
+         * @return
+         */
+        private ListNode _reverseFun2(ListNode head) {
+            ListNode pre, cur;
+            pre = head;
+            cur = pre.next;
+            pre.next = null;
+            while (cur != null) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            //  System.out.println(head.val+"-"+pre.val);
+            return pre;
+        }
+
+        private ListNode _reverseFun2_1(ListNode head) {
+            ListNode pre = null, cur;
+            cur = head;
+            while (cur != null) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            //  System.out.println(head.val+"-"+pre.val);
+            return pre;
+        }
+
+        /**
+         * 头插法
+         *
+         * @param head
+         * @return
+         */
+        private ListNode _reverseFun3(ListNode head) {
+            return null;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
