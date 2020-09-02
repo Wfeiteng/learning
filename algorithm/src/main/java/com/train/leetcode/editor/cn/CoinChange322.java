@@ -28,16 +28,44 @@ import java.util.Arrays;
 public class CoinChange322 {
     public static void main(String[] args) {
         Solution solution = new CoinChange322().new Solution();
-        //    System.out.println(solution.coinChange(new int[]{2}, 3));
+           System.out.println(solution.coinChange(new int[]{2}, 3));
         // System.out.println(solution.coinChange(new int[]{1, 2, 5}, 11));
-        System.out.println(solution.coinChange(new int[]{186, 419, 83, 408}, 6249));
+       System.out.println(solution.coinChange(new int[]{186, 419, 83, 408}, 6249));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int coinChange(int[] coins, int amount) {
             // todo 硬币
-            return _greedy(coins, amount);
+            //  return _greedy(coins, amount);
+            return _dp(coins, amount);
+        }
+
+        /**
+         * dp[i]=min{dp[i],dp[i-coin]+1,coin 属于coins}
+         *
+         * @param coins
+         * @param amount
+         * @return
+         */
+        private int _dp(int[] coins, int amount) {
+            int[] dp = new int[amount + 1];
+            for (int i = 1; i <= amount; i++) {
+                dp[i] = amount + 1;
+            }
+            for (int i = 1; i <= amount; i++) {
+                for (int j = 0; j < coins.length; j++) {
+                    int pos = i - coins[j];
+                    if (pos < 0) {
+                        continue;
+                    }
+                    dp[i] = Math.min(dp[i], dp[pos] + 1);
+                }
+            }
+            if (dp[amount] > amount) {
+                return -1;
+            }
+            return dp[amount];
         }
 
         /**

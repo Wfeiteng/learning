@@ -50,8 +50,11 @@ public class BinaryTreeMaximumPathSum124 {
      * }
      */
     class Solution {
+        int ans = Integer.MIN_VALUE;
+
         public int maxPathSum(TreeNode root) {
-            return maxPathSumRecursive(root);
+            maxPathSumRecursive(root);
+            return ans;
         }
 
         private int maxPathSumRecursive(TreeNode root) {
@@ -60,8 +63,9 @@ public class BinaryTreeMaximumPathSum124 {
             }
             int leftRes = Math.max(maxPathSumRecursive(root.left), 0);
             int rightRes = Math.max(maxPathSumRecursive(root.right), 0);
-            int subTree = Math.max(root.val + leftRes, root.val + rightRes);
-            return Math.max(Math.max(rightRes + leftRes + root.val, subTree), 0);
+
+            ans = Math.max(ans, root.val + leftRes + rightRes);
+            return Math.max(leftRes, rightRes) + root.val;
         }
 
     }
