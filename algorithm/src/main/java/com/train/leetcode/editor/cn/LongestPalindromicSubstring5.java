@@ -117,39 +117,14 @@ public class LongestPalindromicSubstring5 {
 
         /**
          * 动态规划: s与s.reverse()的最长公共字串--> 有错误
+         * ref:https://juejin.im/post/6844903901884317709
          *
          * @param s
          * @return
          */
         public String longestPalindromeDp(String s) {
-            if (Objects.isNull(s)) {
-                return "";
-            }
-            String sRever = new StringBuilder(s).reverse().toString();
-            int length = s.length();
-            // 每行的最后一列存的是该行中最大列值的索引
-            int[][] dp = new int[length][length];
-
-            int maxLen = 0;
-            int maxEnd = 0;
-
-            for (int row = 0; row < length; row++) {
-                int colMaxIndex = 0;
-                for (int col = 0; col < length; col++) {
-                    if (s.charAt(row - 1) == sRever.charAt(col - 1)) {
-                        if (row == 0 || col == 0) {
-                            dp[row][col] = 1;
-                        } else {
-                            dp[row][col] = dp[row - 1][col - 1] + 1;
-                        }
-                    }
-                }
-                // 一行中最大的那列
-
-
-            }
-
-            return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
+            // todo dp 咋求
+            return "";
         }
 
     }

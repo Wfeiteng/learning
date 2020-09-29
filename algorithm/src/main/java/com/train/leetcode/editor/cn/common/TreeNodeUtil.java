@@ -22,4 +22,10 @@ public class TreeNodeUtil {
         return root;
     }
 
+    public static void main(String[] args) {
+        TreeNode treeNode = TreeNodeUtil.generate(new Integer[] { 5, null, 6, null, 8, 7, 9 });
+System.out.println(treeNode);
+        //https://leetcode-cn.com/problems/increasing-order-search-tree/solution/javazhong-xu-bian-li-die-dai-fa-yi-ji-jia-shang-tr/
+
+    }
 }

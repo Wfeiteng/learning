@@ -19,27 +19,47 @@
 
 package com.train.leetcode.editor.cn;
 
+import com.train.leetcode.editor.cn.common.ArrayUtil;
+
+import java.util.Arrays;
+
 public class JumpGameIi45 {
     public static void main(String[] args) {
         Solution solution = new JumpGameIi45().new Solution();
+        System.out.println(solution.jump(new int[]{2, 3, 1, 1, 4}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
         public int jump(int[] nums) {
-            // todo
-            //  return _dp(nums);
-            return _greedy(nums);
-        }
 
-        private int _dp(int[] nums) {
-
-            return 0;
+            return _dp(nums);
+            // return _greedy(nums);
         }
 
         /**
-         * 贪心算法
+         * 思路和贪心基本一样，但是效率比贪心低很多,多个一个遍历，时间复杂度o(n^2)
+         *
+         * @param nums
+         * @return
+         */
+        private int _dp(int[] nums) {
+            int[] dp = new int[nums.length];
+            Arrays.fill(dp, nums.length + 1);
+            dp[0] = 0;
+            for (int i = 0; i < nums.length; i++) {
+                // jump position
+                int pos = Math.min(i + nums[i], nums.length - 1);
+                for (int j = i + 1; j <= pos; j++) {
+                    dp[j] = Math.min(dp[i] + 1, dp[j]);
+                }
+            }
+            return dp[nums.length - 1];
+        }
+
+        /**
+         * 贪心算法,时间复杂度:o(n)
          *
          * @param nums
          * @return
@@ -52,7 +72,7 @@ public class JumpGameIi45 {
             int minJumpCnt = 0;
             // end为],end为最后一个时中止
             while (end < nums.length - 1) {
-                //[]
+                //[],求[start,end]区间中最远，更新区间与步数
                 for (int i = start; i <= end; i++) {
                     longest = Math.max(longest, i + nums[i]);
                 }

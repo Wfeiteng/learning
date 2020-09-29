@@ -87,11 +87,11 @@ public class SlidingWindowMaximum239 {
                 if (i - que.peekFirst() == k) {
                     que.pollFirst();
                 }
-                // n>deq[0] 则deq出队列。
+                // deq[0]<n 则deq出队列。
                 while (!que.isEmpty() && nums[que.peekFirst()] < nums[i]) {
                     que.pollFirst();
                 }
-                // n>n-1,则n-1出队列。
+                // n-1<n,则n-1出队列。
                 while (!que.isEmpty() && nums[que.peekLast()] < nums[i]) {
                     que.pollLast();
                 }

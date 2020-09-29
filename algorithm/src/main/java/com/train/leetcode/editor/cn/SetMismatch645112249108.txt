@@ -1,0 +1,24 @@
+    class Solution {
+        public int[] findErrorNums(int[] nums) {
+            int[] ans = new int[2];
+            for (int i = 0; i < nums.length; i++) {
+                int index = Math.abs(nums[i]) - 1;
+                // 缺少的和重复的都是整数
+                nums[index] *= -1;
+            }
+            int ansIndex = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] > 0) {
+                    ans[ansIndex] = i + 1;
+                    ansIndex++;
+                }
+            }
+            return ans;
+        }
+    }
+
+//total_testcases:49
+//total_correct:27
+//input_formatted:[2,2]
+//expected_output:[2,1]
+//code_output:[1,2]

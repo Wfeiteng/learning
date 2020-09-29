@@ -1,0 +1,45 @@
+class Solution {
+    public boolean isValid(String s) {
+        if(Objects.isNull(s)||"".equals(s.trim())){
+            return true;
+        }
+        int len = s.length();
+        int i=0;
+        Stack<Character> stack = new Stack();
+        while(i<len){
+            char c = s.charAt(i);
+            if(c=='('){
+                stack.push(')');
+            }
+             if(c==')'){
+              if(stack.isEmpty()||c!=stack.pop()){
+                  return false;
+              }
+            }
+           if(c=='{'){
+                stack.push('}');
+            }
+           if(c=='}'){
+              if(stack.isEmpty()||c!=stack.pop()){
+                  return false;
+              }
+            }
+           if(c=='['){
+                stack.push(']');
+            }
+            if(c==']'){
+              if(stack.isEmpty()||c!=stack.pop()){
+                  return false;
+              }
+            }
+            i++;
+        }
+        
+        if(stack.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+}
+//runtime:2 ms
+//memory:36.8 MB
