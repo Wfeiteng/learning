@@ -18,7 +18,7 @@ public class NumberOfDigitOne233 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int countDigitOne(int n) {
-// todo 位运算
+// todo 数学计算找规律
             return 0;
         }
     }
